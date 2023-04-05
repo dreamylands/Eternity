@@ -1,17 +1,15 @@
+const discord = require('discord.js')
 
-const discord = require ("discord.js")
 
 module.exports = {
-    name : ["ping" , "test"],
-    description : "Either plays a game with you or repeats what you say" ,
-    execute ( client , message , args  )  {
-     message.channel.send ({content : "Pong ! 🏓"})
-     return
+    name : ["ping" , "lag"],
+    description: "shows the current latency of the bot", 
+    async execute (client, message) {
 
-        if (!args[0]) message.reply ("!PONG 🏓")
-        if (args.length > 1) {
-            response = args.join(" ")
-            message.reply (`Now I will echo. 🔊 : ${response}`)
-        }
+    message.channel.send("🔊 : listening to my heartbeat...").then(async(m) =>{
+    m.delete()
+    await m.channel.send(`🤖 : Current Ping is **${m.createdTimestamp - message.createdTimestamp}** ms`)}
+    )
+
     }
 }
